@@ -21,7 +21,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 */
 Route::resource('/', 'IndexController',[
                                         'only' => ['index'],
-                                        'names' => [
+                                        'names' =>  [
                                             'index' => 'home'
-                                        ]
-]);
+                                                    ]
+                                        ]);
+Route::resource('articles','ArticlesController',[
+                                        'parameters'=>  [
+                                            'articles'=>'alias'
+                                                        ]
+                                        ]);
