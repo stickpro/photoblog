@@ -10,42 +10,51 @@ use Photo\Repositories\PortfoliosRepository;
 use Photo\Repositories\SlidersRepository;
 use Config;
 use Illuminate\Http\Request;
-
+use Jenssegers\Date\Date;
 use Photo\Http\Requests;
-
 
 class IndexController extends SiteController
 {
-    public function __construct(SlidersRepository $s_rep, PortfoliosRepository $p_rep) {
+    public function __construct(SlidersRepository $s_rep, PortfoliosRepository $p_rep, ArticlesRepository $a_rep) {
 
         parent::__construct(new \Photo\Repositories\MenusRepository(new \Photo\Menu));
 
         $this->s_rep = $s_rep;
         $this->p_rep = $p_rep;
+        $this->a_rep = $a_rep;
+
+        $this->bar = 'right';
 
         $this->template = env('THEME').'.index';
     }
 
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
         $portfolios = $this->getPortfolio();
         //dd($portfolio);
+        $articles = $this->getArticles();
 
         $sliderItems = $this->getSliders();
         $sliders = view(env('THEME') . '.slider')->with('sliders', $sliderItems)->render();
         $this->vars = array_add($this->vars, 'sliders', $sliders);
 
 
+
+        $this->keywords = 'Множество keywords';
+        $this->meta_desc = 'Описание';
+        $this->titles = 'Главная';
+
         return $this->renderOutput();
 
     }
+    protected function getArticles()
+    {
+        $articles = $this->a_rep->get(['title', 'created_at', 'img', 'alias'], Config::get('settings.home_articles_count'));
+        return $articles;
+    }
+
+
     protected function getPortfolio() {
 
         $portfolio = $this->p_rep->get('*', Config::get('settings.home_port_count'));

@@ -80,8 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
-
+    'locale' => 'ru',
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
@@ -93,7 +92,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'ru',
 
     /*
     |--------------------------------------------------------------------------
@@ -106,7 +105,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'ru_RU',
 
     /*
     |--------------------------------------------------------------------------
@@ -226,7 +225,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'Menu'      => Lavary\Menu\Facade::class,
+        'Menu' => Lavary\Menu\Facade::class,
+        'Date' => Jenssegers\Date\Date::class,
     ],
 
 ];

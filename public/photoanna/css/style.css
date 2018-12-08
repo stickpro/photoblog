@@ -43,11 +43,11 @@
 }
 @font-face {
 	font-family:'futurastd-bold';
-	src: url('../fonts/futurastd-bold.eot');
-	src: url('../fonts/futurastd-bold.eot%3F') format('embedded-opentype'),
-		url('../fonts/futurastd-bold.woff') format('woff'),
-		url('../fonts/futurastd-bold.ttf') format('truetype'),
-		url('../fonts/futurastd-bold.svg') format('svg');
+	src: url('../fonts/FuturaPT-Bold.eot');
+	src: url('../fonts/FuturaPT-Bold.eot%3F') format('embedded-opentype'),
+		url('../fonts/FuturaPT-Bold.woff') format('woff'),
+		url('../fonts/FuturaPT-Bold.ttf') format('truetype'),
+		url('../fonts/FuturaPT-Bold.svg') format('svg');
 }
 /*-------------General Style---------------------------------------*/
 html{

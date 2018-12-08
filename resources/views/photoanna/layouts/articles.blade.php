@@ -32,27 +32,31 @@
             </div>
             <!--Logo end  -->
             <!--Navigation  -->
-    @yield('navigation')
-    <!--Navigation End -->
-    <!--Header inner end  -->
+        @yield('navigation')
+        <!--Navigation End -->
+            <!--Header inner end  -->
     </header>
     <!--header end -->
     <!--=============== wrapper ===============-->
     <div id="wrapper">
         <!--=============== Content holder  ===============-->
 
-                <!-- full-height-wrap end  -->
-            @yield('slider')
-            @yield('content')
-            @yield('bar')
-        <!-- content holder end -->
+        <!-- full-height-wrap end  -->
+    @yield('content')
+    @yield('bar')
+    <!-- end sidebar -->
+    </div>
+</div>
+</section>
+</div>
+    <!-- content holder end -->
     </div>
     <!-- wrapper end -->
     <div class="left-decor"></div>
     <div class="right-decor"></div>
     <!--=============== Footer ===============-->
-        @yield('footer')
-    <!-- footer end -->
+@yield('footer')
+<!-- footer end -->
 </div>
 <!-- Main end -->
 <!--=============== scripts  ===============-->

@@ -4,7 +4,7 @@ namespace Photo\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Photo\Repositories\MenusRepository;
-
+use Jenssegers\Date\Date;
 use Menu;
 
 class SiteController extends Controller
@@ -14,6 +14,11 @@ class SiteController extends Controller
     protected $s_rep;
     protected $a_rep;
     protected $m_rep;
+    protected $c_rep;
+
+    protected $keywords;
+    protected $meta_desc;
+    protected $titles;
 
     protected $template;
 
@@ -31,15 +36,20 @@ class SiteController extends Controller
     protected function renderOutput() {
 
         $menu= $this->getMenu();
-
         $header = view(env('THEME') . '.header')->render();
         $this->vars = array_add($this->vars,'header',$header);
-
         $navigation = view(env('THEME') . '.navigation')->with('menu', $menu)->render();
         $this->vars = array_add($this->vars,'navigation',$navigation);
-
         $footer = view(env('THEME') . '.footer')->render();
-        $this->vars = array_add($this->vars,'footer',$footer);
+        $this->vars = array_add($this->vars, 'footer',$footer);
+        $this->vars = array_add($this->vars, 'keywords', $this->keywords);
+        $this->vars = array_add($this->vars, 'meta_desc', $this->meta_desc);
+        $this->vars = array_add($this->vars, 'titles', $this->titles);
+        if ($this->contentRightBar) {
+            $rightBar = view(env('THEME') . '.rightBar')->with('content_rightBar', $this->contentRightBar)->render();
+            $this->vars = array_add($this->vars, 'rightBar',$rightBar);
+        }
+        $this->vars = array_add($this->vars, 'bar', $this->bar);
         return view($this->template)->with($this->vars);
 
 
