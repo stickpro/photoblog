@@ -4,7 +4,7 @@ namespace Photo\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Support\Facades\DB;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -16,6 +16,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         //
+        DB::listen(function ($query) {
+         //   echo '<h1>'. $query->sql. '</h1>';
+        });
     }
 
     /**

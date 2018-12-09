@@ -27,22 +27,17 @@
         </div>
         <!-- widget -->
         <div class="widget">
-            <h3>Tags</h3>
+            <h3>Категории</h3>
             <div class="clearfix"></div>
             <ul class="tagcloud">
-                <li><a href='blog.html#' class="transition link">Portfolio</a></li>
-                <li><a href='blog.html#' class="transition link">Tag</a></li>
-                <li><a href='blog.html#' class="transition link">Demo</a></li>
-                <li><a href='blog.html#' class="transition link">Blog</a></li>
-                <li><a href='blog.html#' class="transition link">Photography</a></li>
-                <li><a href='blog.html#' class="transition link">Web desighn</a></li>
+                @if(!$categories->isEmpty())
+                    @foreach ($categories as $categories)
+                        <li><a href='{{ route('blogCat', ['cat_alias'=>$categories->alias]) }}' class="transition link">{{ $categories->title }}</a></li>
+                    @endforeach
+                @endif
             </ul>
         </div>
-        <div class="widget">
-            <h3>Banner</h3>
-            <div class="clearfix"></div>
-            <img src="images/bg/banner.jpg" alt="" class="respimg">
-        </div>
+
         <!-- widget -->
         <div class="widget">
             <h3>Categories</h3>

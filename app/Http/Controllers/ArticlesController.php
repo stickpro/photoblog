@@ -3,7 +3,7 @@
 namespace Photo\Http\Controllers;
 
 use Photo\Category;
-use Photo\Repositories\CommentsRepository;
+use Photo\Repositories\CategoriesRepository;
 use Illuminate\Http\Request;
 use Photo\Repositories\MenusRepository;
 use Photo\Menu;
@@ -14,7 +14,7 @@ use Jenssegers\Date\Date;
 
 class ArticlesController extends SiteController
 {
-    public function __construct(PortfoliosRepository $p_rep, ArticlesRepository $a_rep, CommentsRepository $c_rep)
+    public function __construct(PortfoliosRepository $p_rep, ArticlesRepository $a_rep, CategoriesRepository $c_rep)
     {
         parent::__construct(new MenusRepository(new Menu()));
         $this->a_rep = $a_rep;
@@ -24,26 +24,24 @@ class ArticlesController extends SiteController
         $this->template = env('THEME') . '.articles';
     }
 
-    public function index()
+    public function index($cat_alias =  FALSE)
     {
 
-        $articles = $this->getArticles();
+        $articles = $this->getArticles($cat_alias);
 
         $content = view(env('THEME') . '.articles_content')->with('articles', $articles)->render();
-
         $this->vars = array_add($this->vars, 'content', $content);
-        $comments = $this->getComments(config('setting.recent_comments'));
+        $categories = $this->getCategories(config('settings.recent_comments'));
         $portfolios = $this->getPortfolios(config('settings.recent_portfolios'));
 
-        $this->contentRightBar = view(env('THEME') . '.articlesBar')->with(['comments' => $comments, 'portfolios' => $portfolios]);
+        $this->contentRightBar = view(env('THEME') . '.articlesBar')->with(['categories' => $categories, 'portfolios' => $portfolios]);
         return $this->renderOutput();
 
     }
-    protected function getComments($take)
+    protected function getCategories($take)
     {
-        $comments = $this->c_rep->get(['text', 'name', 'email', 'site', 'article_id', 'user_id'], $take);
-
-        return $comments;
+        $categories = $this->c_rep->get(['title', 'alias'], $take);
+        return $categories;
     }
 
     protected function getPortfolios($take)
@@ -53,14 +51,37 @@ class ArticlesController extends SiteController
         return $portfolios;
     }
 
-    public function getArticles($alias = FALSE)
-    {
-        $articles = $this->a_rep->get(['title', 'description', 'alias', 'img', 'created_at', 'category_id'], FALSE, TRUE);
 
-        if($articles) {
-            $articles->load('user','category','comments');
+    public function getArticles($alias = FALSE) {
+        $where = FALSE;
+        if ($alias) {
+            $id = Category::select('id')->where('alias', $alias)->first()->id;
+            $where = ['category_id', $id];
+
         }
+        $articles = $this->a_rep->get(['title', 'description', 'alias', 'img', 'created_at', 'category_id'], FALSE, TRUE, $where);
+
+
         return $articles;
+    }
+    public function show($alias =  FALSE)
+    {
+        $article = $this->a_rep->one($alias, ['comments'=> TRUE]);
+        if ($article) {
+            $article->img = json_decode($article->img);
+
+        }
+
+
+        $content = view(env('THEME').'.article_content')->with('article', $article)->render();
+        $this->vars = array_add($this->vars, 'content', $content);
+
+        $categories = $this->getCategories(config('settings.recent_comments'));
+        $portfolios = $this->getPortfolios(config('settings.recent_portfolios'));
+
+        $this->contentRightBar = view(env('THEME') . '.articlesBar')->with(['categories' => $categories, 'portfolios' => $portfolios]);
+
+        return $this->renderOutput();
     }
 
 

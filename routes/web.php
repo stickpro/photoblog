@@ -33,10 +33,10 @@ Route::resource('portfolios','PortfolioController',[
                                         ]);
 
 
-Route::resource('articles','ArticlesController',[
+Route::resource('blog','ArticlesController',[
                                         'parameters'=>  [
-                                            'articles'=>'alias'
+                                            'blog'=>'alias'
                                                         ]
                                         ]);
-Route::get('articles/cat/{cat_alias?}',['uses'=>'ArticlesController@index','as'=>'articlesCat'])->where('cat_alias','[\w-]+');
+Route::get('blog/cat/{cat_alias?}',['uses'=>'ArticlesController@index','as'=>'blogCat'])->where('cat_alias','[\w-]+');
 

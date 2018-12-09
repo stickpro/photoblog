@@ -4,7 +4,6 @@ namespace Photo\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Photo\Repositories\MenusRepository;
-use Jenssegers\Date\Date;
 use Menu;
 
 class SiteController extends Controller
