@@ -37,17 +37,5 @@
                 @endif
             </ul>
         </div>
-
-        <!-- widget -->
-        <div class="widget">
-            <h3>Categories</h3>
-            <div class="clearfix"></div>
-            <ul>
-                <li class="cat-item"><a href="blog.html#">Standard</a> (3)</li>
-                <li class="cat-item"><a href="blog.html#">Video</a> (6)</li>
-                <li class="cat-item"><a href="blog.html#">Gallery</a> (12)</li>
-                <li class="cat-item"><a href="blog.html#">Quotes</a> (4)</li>
-            </ul>
-        </div>
     </div>
 </div>

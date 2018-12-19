@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE HTML>articlesBar
 <html lang="en">
 <head>
     <!--=============== basic  ===============-->

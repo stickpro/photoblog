@@ -2,6 +2,8 @@
 
 namespace Photo\Http\Controllers;
 
+use Photo\Article;
+use Photo\Categories;
 use Photo\Category;
 use Photo\Repositories\CategoriesRepository;
 use Illuminate\Http\Request;
@@ -22,6 +24,7 @@ class ArticlesController extends SiteController
         $this->c_rep = $c_rep;
         $this->bar = 'right';
         $this->template = env('THEME') . '.articles';
+
     }
 
     public function index($cat_alias =  FALSE)
@@ -59,21 +62,22 @@ class ArticlesController extends SiteController
             $where = ['category_id', $id];
 
         }
-        $articles = $this->a_rep->get(['title', 'description', 'alias', 'img', 'created_at', 'category_id'], FALSE, TRUE, $where);
+        $articles = $this->a_rep->get(['title', 'description', 'alias', 'img', 'created_at', 'category_id','id'], FALSE, TRUE, $where);
 
 
         return $articles;
     }
     public function show($alias =  FALSE)
     {
-        $article = $this->a_rep->one($alias, ['comments'=> TRUE]);
+        $article = $this->a_rep->one($alias, ['alias'=> TRUE]);
         if ($article) {
             $article->img = json_decode($article->img);
-
         }
 
+        $previous = Article::where('id', '<', $article->id)->orderBy('id')->first();
+        $next = Article::where('id', '>', $article->id)->orderBy('id')->first();
 
-        $content = view(env('THEME').'.article_content')->with('article', $article)->render();
+        $content = view(env('THEME').'.article_content')->with(compact('article', $article, 'previous', $previous, $next, 'next'))->render();
         $this->vars = array_add($this->vars, 'content', $content);
 
         $categories = $this->getCategories(config('settings.recent_comments'));
