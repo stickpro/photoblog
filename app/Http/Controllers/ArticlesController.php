@@ -5,13 +5,13 @@ namespace Photo\Http\Controllers;
 use Photo\Article;
 use Photo\Categories;
 use Photo\Category;
-use Photo\Repositories\CategoriesRepository;
-use Illuminate\Http\Request;
-use Photo\Repositories\MenusRepository;
 use Photo\Menu;
-use Photo\Http\Requests;
+use Photo\Repositories\CategoriesRepository;
+use Photo\Repositories\MenusRepository;
 use Photo\Repositories\PortfoliosRepository;
 use Photo\Repositories\ArticlesRepository;
+use Photo\Http\Requests;
+use Illuminate\Http\Request;
 use Jenssegers\Date\Date;
 
 class ArticlesController extends SiteController
@@ -49,7 +49,8 @@ class ArticlesController extends SiteController
 
     protected function getPortfolios($take)
     {
-        $portfolios = $this->p_rep->get(['title', 'alias','customer','img','filter_alias', 'created_at'], $take);
+        $portfolios = $this->p_rep->get(['title', 'alias','customer','img','filter_alias', 'created_at','gallery'], $take);
+
 
         return $portfolios;
     }
@@ -62,6 +63,7 @@ class ArticlesController extends SiteController
             $where = ['category_id', $id];
 
         }
+
         $articles = $this->a_rep->get(['title', 'description', 'alias', 'img', 'created_at', 'category_id','id'], FALSE, TRUE, $where);
 
 
@@ -77,7 +79,7 @@ class ArticlesController extends SiteController
         $previous = Article::where('id', '<', $article->id)->orderBy('id')->first();
         $next = Article::where('id', '>', $article->id)->orderBy('id')->first();
 
-        $content = view(env('THEME').'.article_content')->with(compact('article', $article, 'previous', $previous, $next, 'next'))->render();
+        $content = view(env('THEME').'.article_content')->with(['article'=>$article, 'previous'=>$previous, 'next'=>$next])->render();
         $this->vars = array_add($this->vars, 'content', $content);
 
         $categories = $this->getCategories(config('settings.recent_comments'));

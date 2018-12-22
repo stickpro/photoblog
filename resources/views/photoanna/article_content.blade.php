@@ -96,12 +96,3 @@
 
                     </div>
                     <!--================= sidebar  ================-->
-                    <!-- end sidebar -->
-                </div>
-            </div>
-        </section>
-    </div>
-    <!-- Content end  -->
-    <!-- Share container  -->
-    <div class="share-container  isShare"  data-share="['facebook','pinterest','googleplus','twitter','linkedin']"></div>
-</div>

@@ -1,5 +1,4 @@
-<div class="col-md-4">
-    <div class="sidebar">
+
         <div class="widget">
             <h3>{{ Lang::get('ru.about_autor') }}</h3>
             <div class="clearfix"></div>
@@ -37,5 +36,3 @@
                 @endif
             </ul>
         </div>
-    </div>
-</div>

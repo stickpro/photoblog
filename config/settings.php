@@ -5,6 +5,7 @@
         'home_articles_count' => '3',
         'paginate' => '3',
         'recent_categories' => '10',
-        'recent_portfolios' => '4'
+        'recent_portfolios' => '4',
+        'other_portfolios' => '5'
     ]
 ?>

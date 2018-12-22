@@ -15,6 +15,7 @@ class ChangeCategoruTable extends Migration
     {
         Schema::table('categories', function (Blueprint $table) {
             $table->string('title');
+
             //
         });
     }

@@ -9,6 +9,7 @@ use Photo\Repositories\CategoriesRepository;
 use Photo\Repositories\MenusRepository;
 use Photo\Repositories\PortfoliosRepository;
 use Photo\Repositories\SlidersRepository;
+use Photo\Repositories\FiltersRepository;
 use Config;
 use Illuminate\Http\Request;
 use Jenssegers\Date\Date;
@@ -16,7 +17,7 @@ use Photo\Http\Requests;
 
 class IndexController extends SiteController
 {
-    public function __construct(SlidersRepository $s_rep, PortfoliosRepository $p_rep, ArticlesRepository $a_rep, CategoriesRepository $c_rep) {
+    public function __construct(SlidersRepository $s_rep, PortfoliosRepository $p_rep, ArticlesRepository $a_rep, CategoriesRepository $c_rep, FiltersRepository $f_rep) {
 
         parent::__construct(new \Photo\Repositories\MenusRepository(new \Photo\Menu));
 
@@ -24,7 +25,7 @@ class IndexController extends SiteController
         $this->p_rep = $p_rep;
         $this->a_rep = $a_rep;
         $this->c_rep = $c_rep;
-
+        $this->f_rep = $f_rep;
         $this->bar = 'right';
 
         $this->template = env('THEME').'.index';
@@ -67,6 +68,11 @@ class IndexController extends SiteController
 
         $portfolio = $this->p_rep->get('*', Config::get('settings.home_port_count'));
         return $portfolio;
+    }
+    protected function getFilter() {
+
+        $filters = $this->f_rep->get('*');
+        return $filters;
     }
 
     public function getSliders()

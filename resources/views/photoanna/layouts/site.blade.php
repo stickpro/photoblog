@@ -45,6 +45,7 @@
             @yield('slider')
             @yield('content')
             @yield('bar')
+        <div class="share-container  isShare"  data-share="['facebook','pinterest','googleplus','twitter','linkedin']"></div>
         <!-- content holder end -->
     </div>
     <!-- wrapper end -->

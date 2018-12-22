@@ -42,9 +42,23 @@
         <!--=============== Content holder  ===============-->
 
         <!-- full-height-wrap end  -->
-    @yield('content')
-    @yield('bar')
+
+            <!--=============== content  ===============-->
+
+                                @yield('content')
+
+                            <!--================= sidebar  ================-->
+                            <div class="col-md-4">
+                                <div class="sidebar">
+                                    @yield('bar')
+                                </div>
+                            </div>
+                            <!-- end sidebar -->
+
+        </div>
+
     <!-- end sidebar -->
+
     </div>
 </div>
 </section>
@@ -55,6 +69,7 @@
     <div class="left-decor"></div>
     <div class="right-decor"></div>
     <!--=============== Footer ===============-->
+<div class="share-container  isShare"  data-share="['facebook','pinterest','googleplus','twitter','linkedin']"></div>
 @yield('footer')
 <!-- footer end -->
 </div>

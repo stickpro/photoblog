@@ -15,6 +15,7 @@ class ChangePortfoliosTable extends Migration
     {
         Schema::table('portfolios', function (Blueprint $table) {
             $table->string('filter_alias');
+            $table->string('gallery');
             $table->foreign('filter_alias')->references('alias')->on('filters');
             //
         });

@@ -36,6 +36,9 @@ abstract class Repository
             if(is_string($item->img) && is_object(json_decode($item->img)) && (json_last_error() == JSON_ERROR_NONE)) {
                 $item->img = json_decode($item->img);
             }
+            if(is_string($item->gallery) && is_object(json_decode($item->gallery)) && (json_last_error() == JSON_ERROR_NONE)) {
+                $item->gallery = json_decode($item->gallery);
+            }
 
             return $item;
         });
