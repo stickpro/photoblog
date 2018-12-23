@@ -40,4 +40,6 @@ Route::resource('blog','ArticlesController',[
                                         ]);
 Route::get('blog/cat/{cat_alias?}',['uses'=>'ArticlesController@index','as'=>'blogCat'])->where('cat_alias','[\w-]+');
 
+Route::match(['get','post'],'/contact',['uses'=>'ContactsController@index','as'=>'contacts']);
+
 

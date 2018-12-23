@@ -45,7 +45,7 @@ abstract class Repository
         return $result;
     }
     public function one($alias, $atr = array()) {
-        $result = $this->model->where('alias',$alias)->first();
+        $result = $this->model->where('alias',$alias)->firstOrFail();
 
         return $result;
     }

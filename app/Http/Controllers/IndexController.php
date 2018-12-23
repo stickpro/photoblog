@@ -46,7 +46,7 @@ class IndexController extends SiteController
 
         $this->keywords = 'Множество keywords';
         $this->meta_desc = 'Описание';
-        $this->titles = 'Главная';
+        $this->titles  = 'Главная';
 
         return $this->renderOutput();
 

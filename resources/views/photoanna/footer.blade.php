@@ -7,8 +7,15 @@
         </ul>
     </div>
     <!-- footer social -->
+
     <div class="footer-social">
+
         <ul>
+            <li class="no-padding"><div class="code"></div>
+                <a href="#">with</a>
+                <div class="heart"></div>
+                <a href="https://stick-design.ru">by Stick-design</a>
+            </li>
             <li><a href="https://vk.com/id164515916" target="_blank"><i class="fa fa-vk"></i></a></li>
             <li><a href="https://instagram.com/shagovaa" target="_blank" ><i class="fa fa-instagram"></i></a></li>
         </ul>

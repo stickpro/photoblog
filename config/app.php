@@ -227,6 +227,8 @@ return [
 
         'Menu' => Lavary\Menu\Facade::class,
         'Date' => Jenssegers\Date\Date::class,
+
+
     ],
 
 ];

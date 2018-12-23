@@ -1203,7 +1203,7 @@ nav li ul a.act-link {
 /*------facts  -------------------------------------------------*/
 .inline-facts {
 	float:left;
-	width:25%;
+	width:50%;
 	padding:40px 0;
 	position:relative;
 	background:#fff;
@@ -3221,4 +3221,60 @@ section {
 	-webkit-background-size:cover;
 	background-position:center;
 }
+}
+.code, .heart {
+	display: inline-block;
+	height: 0.75rem;
+	margin: 0 .75rem;
+	position: relative;
+	width: 0.75rem;
+}
+.code::before, .code::after, .heart::before, .heart::after {
+	content: "";
+	display: block;
+	position: absolute;
+}
+
+.code {
+	border: .125rem solid royalblue;
+	-webkit-transform: translateY(0.0625rem) scale(1.33) rotate(45deg);
+	transform: translateY(0.0625rem) scale(1.10) rotate(45deg);
+}
+.code::before, .code::after {
+	height: .375rem;
+	width: .375rem;
+	background-color: #fafafa;
+}
+.code::before {
+	top: -0.16rem;
+	left: -0.16rem;
+}
+.code::after {
+	right: -0.16rem;
+	bottom: -0.16rem;
+}
+
+.heart {
+	border-radius: 7.5%;
+	background-color: currentColor;
+	color: tomato;
+	-webkit-transform: translateY(0.125rem) scale(0.7) rotate(-45deg);
+	transform: translateY(0.125rem) scale(0.7) rotate(-45deg);
+}
+.heart::before, .heart::after {
+	height: 100%;
+	width: 100%;
+	border-radius: 100%;
+	background-color: currentColor;
+}
+.heart::before {
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+.heart::after {
+	-webkit-transform: translateX(50%);
+	transform: translateX(50%);
+}
+.no-padding a {
+	padding: 0!important;
 }

@@ -4,6 +4,7 @@ namespace Photo\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +47,21 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($this->isHttpException($exception)) {
+            $statusCode = $exception->getStatusCode();
+
+            switch ($statusCode) {
+                case '404' :
+
+                $obj = new \Photo\Http\Controllers\SiteController(new \Photo\Repositories\MenusRepository(new \Photo\Menu()));
+
+                $navigation = view(env('THEME') . '.navigation')->with('menu', $obj->getMenu())->render();
+
+                \Log::alert('Страница не найдена - '.$request->url() );
+
+                return response()->view(env('THEME').'.404',['titles'=>'Страница не найдена', 'navigation' => $navigation]);
+            }
+        }
         return parent::render($request, $exception);
     }
 }

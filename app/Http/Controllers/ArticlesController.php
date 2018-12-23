@@ -50,8 +50,6 @@ class ArticlesController extends SiteController
     protected function getPortfolios($take)
     {
         $portfolios = $this->p_rep->get(['title', 'alias','customer','img','filter_alias', 'created_at','gallery'], $take);
-
-
         return $portfolios;
     }
 
@@ -59,7 +57,7 @@ class ArticlesController extends SiteController
     public function getArticles($alias = FALSE) {
         $where = FALSE;
         if ($alias) {
-            $id = Category::select('id')->where('alias', $alias)->first()->id;
+            $id = Category::select('id')->where('alias', $alias)->firstOrFail()->id;
             $where = ['category_id', $id];
 
         }
@@ -79,7 +77,7 @@ class ArticlesController extends SiteController
         $previous = Article::where('id', '<', $article->id)->orderBy('id')->first();
         $next = Article::where('id', '>', $article->id)->orderBy('id')->first();
 
-        $content = view(env('THEME').'.article_content')->with(['article'=>$article, 'previous'=>$previous, 'next'=>$next])->render();
+        $content = view(env('THEME').'.article_content')->with(compact('article', $article, 'previous', $previous, $next, 'next'))->render();
         $this->vars = array_add($this->vars, 'content', $content);
 
         $categories = $this->getCategories(config('settings.recent_comments'));

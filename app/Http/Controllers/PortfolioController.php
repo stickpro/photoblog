@@ -49,7 +49,6 @@ class PortfolioController extends SiteController
         }
         $previous = Portfolio::where('id', '<', $portfolio->id)->orderBy('id')->first();
         $next = Portfolio::where('id', '>', $portfolio->id)->orderBy('id')->first();
-
         $content = view(env('THEME') . '.portfolio_content')->with(['portfolio'=>$portfolio, 'previous'=>$previous, 'next'=>$next])->render();
         $this->vars = array_add($this->vars, 'content', $content);
 

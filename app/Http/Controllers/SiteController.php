@@ -39,13 +39,16 @@ class SiteController extends Controller
         $menu= $this->getMenu();
         $header = view(env('THEME') . '.header')->render();
         $this->vars = array_add($this->vars,'header',$header);
+
         $navigation = view(env('THEME') . '.navigation')->with('menu', $menu)->render();
         $this->vars = array_add($this->vars,'navigation',$navigation);
+
         $footer = view(env('THEME') . '.footer')->render();
         $this->vars = array_add($this->vars, 'footer',$footer);
-        $this->vars = array_add($this->vars, 'keywords', $this->keywords);
-        $this->vars = array_add($this->vars, 'meta_desc', $this->meta_desc);
-        $this->vars = array_add($this->vars, 'titles', $this->titles);
+
+        $this->vars = array_add($this->vars,'keywords',$this->keywords);
+        $this->vars = array_add($this->vars,'meta_desc',$this->meta_desc);
+        $this->vars = array_add($this->vars,'titles',$this->titles);
         if ($this->contentRightBar) {
             $rightBar = view(env('THEME') . '.rightBar')->with('content_rightBar', $this->contentRightBar)->render();
             $this->vars = array_add($this->vars, 'rightBar',$rightBar);

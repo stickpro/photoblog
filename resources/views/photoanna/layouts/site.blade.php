@@ -8,6 +8,7 @@
     <meta name="keywords" content="{{ (isset($keywords)) ? $keywords : '' }}"/>
     <meta name="description" content="{{ (isset($meta_desc)) ? $meta_desc : '' }}"/>
     <title>{{ $titles or 'Bird Photo' }}</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!--=============== css  ===============-->
     <link type="text/css" rel="stylesheet" href="{{asset(env('THEME'))}}/css/reset.css">
     <link type="text/css" rel="stylesheet" href="{{asset(env('THEME'))}}/css/plugins.css">
