@@ -56,13 +56,13 @@
         </div>
         <div class="resize-carousel-holder vis-info">
             <div id="gallery_horizontal" class="gallery_horizontal owl_carousel demo-gallery">
-                @foreach ($portfolio->gallery['photo'] as $i => $photo)
+                @foreach ($portfolio->gallery as $i => $photo)
                     <div class="horizontal_item">
                         <div class="zoomimage">
-                            <img src="{{ asset(env('THEME')) }}/images/bg/{{ $photo['photo'] }}" class="intense" alt="">
+                            <img src="/storage/{{ $photo['name'] }}" class="intense" alt="">
                             <i class="fa fa-expand"></i>
                         </div>
-                        <img src="{{ asset(env('THEME')) }}/images/bg/{{ $photo['photo'] }}" alt="{{ $photo['title'] }}">
+                        <img src="/storage/{{ $photo['name'] }}" alt="{{ $photo['title'] }}">
                         @if($photo['title'])
                         <div class="show-info">
                                 <span>Название работы</span>

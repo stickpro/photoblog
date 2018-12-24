@@ -42,11 +42,9 @@ class IndexController extends SiteController
         $sliders = view(env('THEME') . '.slider')->with('sliders', $sliderItems)->render();
         $this->vars = array_add($this->vars, 'sliders', $sliders);
 
-
-
         $this->keywords = 'Множество keywords';
         $this->meta_desc = 'Описание';
-        $this->titles  = 'Главная';
+        $this->titles  =  'главная';
 
         return $this->renderOutput();
 

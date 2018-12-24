@@ -43,3 +43,7 @@ Route::get('blog/cat/{cat_alias?}',['uses'=>'ArticlesController@index','as'=>'bl
 Route::match(['get','post'],'/contact',['uses'=>'ContactsController@index','as'=>'contacts']);
 
 
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
