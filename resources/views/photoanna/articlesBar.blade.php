@@ -9,11 +9,10 @@
         <div class="widget">
             <h3>{{ Lang::get('ru.latest_project') }}</h3>
             <ul class="widget-posts">
-
                 @if(!$portfolios->isEmpty())
                     @foreach($portfolios as $portfolio)
                         <li class="clearfix">
-                            <a href="{{ route('portfolios.show', ['alias'=>$portfolio->alias]) }}"  class="widget-posts-img"><img src="{{asset(env('THEME'))}}/images/bg/{{ $portfolio->img->mini }}" class="respimg" alt="{{ $portfolio->img->mini }}"></a>
+                            <a href="{{ route('portfolios.show', ['alias'=>$portfolio->alias]) }}"  class="widget-posts-img"><img src="/storage/{{ $portfolio->img }}" class="respimg" alt="{{ $portfolio->img }}"></a>
                             <div class="widget-posts-descr">
                                 <a href="{{ route('portfolios.show', ['alias'=>$portfolio->alias]) }}" title="{{ $portfolio->title }}">{{ $portfolio->title }}</a>
                                 <span class="widget-posts-date"> {{ $portfolio->created_at->format('j M Y')}}</span>

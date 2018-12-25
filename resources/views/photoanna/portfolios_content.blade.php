@@ -27,7 +27,7 @@
                     <!-- portfolio item -->
                     @foreach($portfolios as $portfolio)
                     <div class="portfolio_item people {{ $portfolio->filter_alias }} ">
-                        <img  src="{{ asset(env('THEME')) }}/images/bg/{{ $portfolio->img->max }}"   alt="">
+                        <img  src="/storage/{{ $portfolio->img }}"   alt="">
                         <div class="port-desc-holder">
                             <div class="port-desc">
                                 <div class="overlay"></div>

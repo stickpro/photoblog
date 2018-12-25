@@ -71,7 +71,7 @@ class ArticlesController extends SiteController
     {
         $article = $this->a_rep->one($alias, ['alias'=> TRUE]);
         if ($article) {
-            $article->img = json_decode($article->img);
+            $article->gallery =  json_decode($article->gallery,  true);
         }
 
         $previous = Article::where('id', '<', $article->id)->orderBy('id')->first();

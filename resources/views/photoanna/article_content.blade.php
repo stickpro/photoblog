@@ -30,15 +30,18 @@
                             <div class="blog-media">
                                 <div class="custom-slider-holder">
                                     <div class="custom-slider owl-carousel">
+                                        @foreach($article->gallery as $i => $photo)
                                         <div class="item">
-                                            <img src="{{asset(env('THEME'))}}/images/bg/{{ $article->img->max }}"  class="respimg" alt="">
+                                            <img src="/storage/{{ $photo['name'] }}"  class="respimg" alt="">
                                         </div>
-                                        <div class="item">
-                                            <img src="{{asset(env('THEME'))}}/images/bg/{{ $article->img->mini }}"  class="respimg" alt="">
-                                        </div>
-                                        <div class="item">
-                                            <img src="{{asset(env('THEME'))}}/images/bg/{{ $article->img->path }}"  class="respimg" alt="">
-                                        </div>
+                                        @endforeach
+
+                                        {{--<div class="item">--}}
+                                            {{--<img src="{{asset(env('THEME'))}}/images/bg/{{ $article->img->mini }}"  class="respimg" alt="">--}}
+                                        {{--</div>--}}
+                                        {{--<div class="item">--}}
+                                            {{--<img src="{{asset(env('THEME'))}}/images/bg/{{ $article->img->path }}"  class="respimg" alt="">--}}
+                                        {{--</div>--}}
                                     </div>
                                     <div class="customNavigation">
                                         <a class="prev-slide"><i class="fa fa-angle-left"></i></a>

@@ -1,7 +1,7 @@
 @if(count($sliders) > 0)
     <div class="content-holder elem scale-bg2 transition3 slid-hol" >
         <!-- Fixed title  -->
-        <div class="fixed-title"><span>Home</span></div>
+        <div class="fixed-title"><span>Главная</span></div>
         <!-- Fixed title end -->
         <!--=============== Content ===============-->
         <div class="content full-height">
@@ -10,9 +10,9 @@
         <div class="swiper-wrapper">
             @foreach($sliders as $slider)
                 <div class="swiper-slide">
-                    <div class="bg" style="background-image:url({{asset(env('THEME'))}}/images/{{ $slider->img  }})"></div>
+                    <div class="bg" style="background-image:url(/storage/{{ $slider->img }}"></div>
                     <div class="overlay"></div>
-                    <div class="zoomimage"><img src="{{asset(env('THEME'))}}/images/{{ $slider->img  }}" class="intense" alt=""><i class="fa fa-expand"></i></div>
+                    <div class="zoomimage"><img src="/storage/{{ $slider->img  }}" class="intense" alt=""><i class="fa fa-expand"></i></div>
                     <div class="slide-title-holder">
                         <div class="slide-title">
                             <span class="subtitle">{{ $slider->title  }} </span>

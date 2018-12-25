@@ -8,13 +8,12 @@
     <meta name="keywords" content="{{ (isset($keywords)) ? $keywords : '' }}"/>
     <meta name="description" content="{{ setting('site.description') }}"/>
     @if(Route::currentRouteName() == 'home')
-    <title>{{ setting('site.title') }}</title>
+     <title>{{ setting('site.title') }}</title>
     @else
         <title>{!!  $titles or 'Default title' !!}</title>
 
 
     @endif
-    {{ dd($titles) }}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!--=============== css  ===============-->
     <link type="text/css" rel="stylesheet" href="{{asset(env('THEME'))}}/css/reset.css">

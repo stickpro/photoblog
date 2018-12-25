@@ -24,6 +24,7 @@
                         <!-- 1 -->
                         @if ($articles)
                             @foreach($articles as $article)
+
                                 <article>
                                     <ul class="blog-title">
                                         <li><a href="{{ route('blog.show',['alias'=>$article->alias]) }}" class="tag">{{ $article->created_at->format('j F Y')}}</a></li>
@@ -34,7 +35,7 @@
                                         <div class="box-item">
                                             <a href="{{ route('blog.show',['alias'=>$article->alias]) }}" >
                                                 <span class="overlay"></span>
-                                                <img src="{{ asset(env('THEME'))  }}/images/bg/{{ $article->img->max }}"  alt="" class="respimg">
+                                                <img src="/storage/{{ $article->img  }}"  alt="" class="respimg">
                                             </a>
                                         </div>
                                     </div>
@@ -47,9 +48,9 @@
                             @endforeach
                         <div class="clearfix"></div>
                         <!-- pagination   -->
-
+                                @if($articles->lastPage() > 1)
                         <div class="pagination-blog">
-                            @if($articles->lastPage() > 1)
+
                                     @if($articles->currentPage() !== 1)
                                     <a href="{{ $articles->url($articles->currentPage() -1 ) }}" class="prevposts-link transition"><i class="fa fa-chevron-left"></i></a>
                                     @endif
@@ -64,8 +65,9 @@
                                     @if($articles->currentPage() !== $articles->lastPage())
                                             <a href="{{ $articles->url($articles->currentPage() +1 ) }}" class="prevposts-link transition"><i class="fa fa-chevron-right"></i></a>
                                     @endif
-                            @endif
+
                         </div>
+                                @endif
                     </div>
 
 
